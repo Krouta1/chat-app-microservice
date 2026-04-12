@@ -40,9 +40,8 @@ export const validateRequest = (schemas: RequestValidationSchemas) => {
       if (error instanceof ZodError) {
         const formattedError = formatZodError(error);
         next(new HttpError(422, 'Validation Error', { errors: formattedError }));
-      } else {
-        next(error);
       }
+      next(error);
     }
   };
 };

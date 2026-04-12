@@ -2,10 +2,13 @@ import { createApp } from '@/app';
 import { createServer } from 'http';
 import { env } from '@/config/env';
 import { logger } from '@/utils/logger';
+import { connectToDatabase } from '@/db/sequelize';
 
 // Main function to start the auth service
 const main = async () => {
   try {
+    await connectToDatabase();
+
     const app = createApp();
     const server = createServer(app);
 

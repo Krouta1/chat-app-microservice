@@ -6,6 +6,7 @@ import { createEnv, z } from '@chat-app-microservice/common';
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   AUTH_SERVICE_PORT: z.coerce.number().int().min(0).max(65535).default(40003),
+  AUTH_DB_URL: z.string().url(),
 });
 
 // Infer the TypeScript type from the Zod schema
