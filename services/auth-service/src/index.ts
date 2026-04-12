@@ -3,12 +3,16 @@ import { createServer } from 'http';
 import { env } from '@/config/env';
 import { logger } from '@/utils/logger';
 import { connectToDatabase } from '@/db/sequelize';
+import { initModels } from '@/models';
 
 // Main function to start the auth service
 const main = async () => {
   try {
+    // Connect to the database and initialize models
     await connectToDatabase();
+    await initModels();
 
+    // Create the Express app and HTTP server
     const app = createApp();
     const server = createServer(app);
 
