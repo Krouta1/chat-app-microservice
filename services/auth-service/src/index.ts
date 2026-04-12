@@ -1,7 +1,7 @@
-import { createApp } from "./app";
+import { createApp } from "@/app";
 import { createServer } from "http";
-import { env } from "./config/env";
-import { logger } from "./utils/logger";
+import { env } from "@/config/env";
+import { logger } from "@/utils/logger";
 
 // Main function to start the auth service
 const main = async () => {
