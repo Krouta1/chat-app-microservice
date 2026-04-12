@@ -1,7 +1,7 @@
-import express, { Application } from "express";
-import helmet from "helmet";
-import cors from "cors";
-import { errorHandler } from "@/middleware/error-hanlder";
+import express, { Application } from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import { errorHandler } from '@/middleware/error-hanlder';
 
 export const createApp = (): Application => {
   const app = express();
@@ -12,7 +12,7 @@ export const createApp = (): Application => {
   // CORS configuration
   app.use(
     cors({
-      origin: "*",
+      origin: '*',
       credentials: true,
     }),
   );
@@ -23,7 +23,7 @@ export const createApp = (): Application => {
 
   // for api route that i don't have
   app.use((_req, res) => {
-    res.status(404).json({ message: "Not Found" });
+    res.status(404).json({ message: 'Not Found' });
   });
 
   app.use(errorHandler);

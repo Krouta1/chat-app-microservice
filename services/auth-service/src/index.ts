@@ -1,7 +1,7 @@
-import { createApp } from "@/app";
-import { createServer } from "http";
-import { env } from "@/config/env";
-import { logger } from "@/utils/logger";
+import { createApp } from '@/app';
+import { createServer } from 'http';
+import { env } from '@/config/env';
+import { logger } from '@/utils/logger';
 
 // Main function to start the auth service
 const main = async () => {
@@ -16,20 +16,20 @@ const main = async () => {
 
     // Shutdown handler to stop the server
     const shutdown = async () => {
-      logger.info("Shutting down auth service...");
+      logger.info('Shutting down auth service...');
       Promise.all([])
         .catch((error) => {
-          logger.error({ error }, "Error during shutdown");
+          logger.error({ error }, 'Error during shutdown');
         })
         .finally(() => {
           server.close(() => process.exit(0));
         });
     };
 
-    process.on("SIGINT", shutdown);
-    process.on("SIGTERM", shutdown);
+    process.on('SIGINT', shutdown);
+    process.on('SIGTERM', shutdown);
   } catch (error) {
-    logger.error({ error }, "Failed to start the auth service");
+    logger.error({ error }, 'Failed to start the auth service');
     process.exit(1);
   }
 };
