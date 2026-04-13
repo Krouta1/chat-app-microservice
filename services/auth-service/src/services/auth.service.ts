@@ -29,6 +29,8 @@ export const register = async (input: RegisterInput): Promise<AuthResponse> => {
       },
       { transaction },
     );
+
+    // Create a refresh token record for the new user
     const refreshTokenRecord = await createRefreshToken(user.id, transaction);
     await transaction.commit();
     const accessToken = signAccessToken({ sub: user.id, email: user.email });
@@ -40,7 +42,9 @@ export const register = async (input: RegisterInput): Promise<AuthResponse> => {
       displayName: user.displayName,
       createdAt: user.createdAt.toISOString(),
     };
+
     //TODO: Publish user.registered event here
+
     return {
       user: userData,
       accessToken,
