@@ -3,8 +3,7 @@ import { RefreshToken, UserCredentials } from '@/models';
 import { AuthResponse, RegisterInput } from '@/types/auth';
 import { hashPassword, signAccessToken, signRefreshToken } from '@/utils/token';
 import { HttpError } from '@chat-app-microservice/common';
-import { Transaction } from 'sequelize/types/transaction';
-import { Op } from 'sequelize/types/operators';
+import { Op, type Transaction } from 'sequelize';
 
 const REFRESH_TOKEN_TTL_DAYS = 30;
 
