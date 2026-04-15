@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import { errorHandler } from '@/middleware/error-hanlder';
-//import { registerRoutes } from '@/routes';
+import { registerRoutes } from '@/routes';
 
 export const createApp = (): Application => {
   const app = express();
@@ -22,7 +22,7 @@ export const createApp = (): Application => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // registerRoutes(app);
+  registerRoutes(app);
 
   // for api route that i don't have
   app.use((_req, res) => {
