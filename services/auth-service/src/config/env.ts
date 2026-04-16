@@ -7,6 +7,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   AUTH_SERVICE_PORT: z.coerce.number().int().min(0).max(65535).default(40003),
   AUTH_DB_URL: z.string().url(),
+  RABBITMQ_URL: z.string().url(),
   JWT_SECRET: z.string().min(32),
   JWT_EXPIRES_IN: z.string().default('1d'),
   JWT_REFRESH_SECRET: z.string().min(32),
