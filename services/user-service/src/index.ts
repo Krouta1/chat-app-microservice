@@ -2,12 +2,13 @@ import { createApp } from '@/app';
 import { createServer } from 'http';
 import { env } from '@/config/env';
 import { logger } from '@/utils/logger';
+import { closeDatabaseConnection, connectToDatabase } from '@/db/sequelize';
 
 // Main function to start the auth service
 const main = async () => {
   try {
     // Connect to the database and initialize models
-    //await connectToDatabase();
+    await connectToDatabase();
     //await initModels();
 
     // Initialize the RabbitMQ publisher
@@ -25,7 +26,7 @@ const main = async () => {
     // Shutdown handler to stop the server
     const shutdown = async () => {
       logger.info('Shutting down user service...');
-      Promise.all([])
+      Promise.all([closeDatabaseConnection() /*, closePublisher()*/])
         .catch((error) => {
           logger.error({ error }, 'Error during shutdown');
         })
